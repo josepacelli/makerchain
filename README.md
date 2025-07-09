@@ -1,6 +1,6 @@
 # 🚀 Makerchain
 
-Makerchain é assistentes inteligente baseado em busca vetorial para suporte em projetos maker localmente, utilizando modelos locais Ollama com Mistral, integrado com FastAPI para uma interface web simples e eficiente.
+Makerchain é um assistente inteligente baseado em busca vetorial para suporte em projetos maker localmente, utilizando modelos locais Ollama com Mistral, integrado com FastAPI para uma interface web simples e eficiente.
 
 ---
 
