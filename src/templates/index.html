@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MakerChain - Assistente de Hardware</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container py-4">
+        <h2 class="mb-4 text-primary">🔌 MakerChain - Assistente de Projetos Maker </h2>
+
+        <form method="post" class="mb-4">
+            <div class="mb-3">
+                <label for="pergunta" class="form-label">Digite sua pergunta:</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="pergunta"
+                    name="pergunta"
+                    placeholder="Ex: Como usar interrupções no ESP32?"
+                    required
+                    autofocus
+                    value="{{ pergunta | default('') }}"
+                />
+            </div>
+            <button type="submit" class="btn btn-primary" id="btnSubmit">
+                Perguntar
+                <span
+                    class="spinner-border spinner-border-sm ms-2 d-none"
+                    role="status"
+                    aria-hidden="true"
+                    id="loadingSpinner"
+                ></span>
+            </button>
+        </form>
+
+        {% if result %}
+            <div class="card mb-4">
+                <div class="card-header">Resposta</div>
+                <div class="card-body">
+                    <p>{{ result }}</p>
+                </div>
+            </div>
+        {% endif %}
+        {% if history %}
+            <h5>Histórico de Perguntas</h5>
+
+            <form method="post" action="/clear" style="margin-bottom: 1rem;">
+                <button type="submit" class="btn btn-danger btn-sm">🗑️ Apagar Histórico</button>
+            </form>
+
+            <ul class="list-group mb-4">
+                {% for item in history %}
+                    <li class="list-group-item">
+                        <strong>P:</strong> {{ item.pergunta }}<br />
+                        <strong>R:</strong> {{ item.resposta }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+
+    <script>
+        const form = document.querySelector('form');
+        const btnSubmit = document.getElementById('btnSubmit');
+        const spinner = document.getElementById('loadingSpinner');
+
+        form.addEventListener('submit', () => {
+            btnSubmit.disabled = true;
+            spinner.classList.remove('d-none');
+        });
+    </script>
+</body>
+</html>
