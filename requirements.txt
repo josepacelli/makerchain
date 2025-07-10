@@ -3,11 +3,13 @@ uvicorn
 jinja2
 python-multipart
 itsdangerous
+sentence-transformers
 
 # LangChain + comunidade
-langchain>=0.2.0
-langchain-community>=0.0.21
-langchain-ollama>=0.0.6
+langchain
+langchain-community
+langchain-ollama
+langchain-experimental
 
 # Vetorização
 faiss-cpu
