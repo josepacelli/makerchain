@@ -21,7 +21,7 @@ def load_documents(data_dir):
             path = os.path.join(root, file)
             if file.endswith(".pdf"):
                 loaders.append(PyPDFLoader(path))
-            elif file.endswith(".py") or file.endswith(".ino"):
+            elif file.endswith(".py") or file.endswith(".ino") or file.endswith(".c") or file.endswith(".cpp"):
                 loaders.append(PythonLoader(path))
             elif file.endswith(".md") or file.endswith(".txt"):
                 loaders.append(TextLoader(path))

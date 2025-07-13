@@ -3,7 +3,6 @@ uvicorn
 jinja2
 python-multipart
 itsdangerous
-sentence-transformers
 
 # LangChain + comunidade
 langchain

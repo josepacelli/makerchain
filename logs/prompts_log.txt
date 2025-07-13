@@ -313,4 +313,48 @@ void setup() {
 }
 ```
 No código acima, a função `interrupt_handler` será executada quando o pino GPIO0 for interrompido.
+========================================Pergunta do usuário:
+Quantos pinos digitais tem cada modelo?
+
+Prompt final enviado ao LLM:
+Considere este histórico de perguntas e respostas:
+Pergunta atual: Quantos pinos digitais tem cada modelo?
+
+Resposta gerada:
+ Cada modelo possui o seguinte número de pinos digitais:
+- WiFi LoRa 32 (V2) - 30 pinos digitais
+- WiFi LoRa 32 (V3) - 26 pinos digitais
+========================================
+Pergunta do usuário:
+Quantos e quais são os pinos de interrupção externa em cada modelo?
+
+Prompt final enviado ao LLM:
+Considere este histórico de perguntas e respostas:
+Pergunta: Quantos pinos digitais tem cada modelo?
+Resposta:  Cada modelo possui o seguinte número de pinos digitais:
+- WiFi LoRa 32 (V2) - 30 pinos digitais
+- WiFi LoRa 32 (V3) - 26 pinos digitais
+
+Pergunta atual: Quantos e quais são os pinos de interrupção externa em cada modelo?
+
+Resposta gerada:
+ Neste documento, não foi especificado detalhadamente quantos e quais são os pinos de interrupção externa em cada modelo. É necessário consultar outros documentos ou fontes para obter mais informações sobre este assunto. No entanto, é possível inferir que o WiFi LoRa 32 (V2) tem pelo menos três pinos de interrupção externa (veja a tabela "Pin Definition" do documento original), enquanto o WiFi LoRa 32 (V3) pode ter um número menor, pois o número total de pinos digitais passou para 26 (do original de 30).
+========================================
+Pergunta do usuário:
+Quantos e quais são os pinos de interrupção externa tem o esp32.
+
+Prompt final enviado ao LLM:
+Considere este histórico de perguntas e respostas:
+Pergunta: Quantos pinos digitais tem cada modelo?
+Resposta:  Cada modelo possui o seguinte número de pinos digitais:
+- WiFi LoRa 32 (V2) - 30 pinos digitais
+- WiFi LoRa 32 (V3) - 26 pinos digitais
+
+Pergunta: Quantos e quais são os pinos de interrupção externa em cada modelo?
+Resposta:  Neste documento, não foi especificado detalhadamente quantos e quais são os pinos de interrupção externa em cada modelo. É necessário consultar outros documentos ou fontes para obter mais informações sobre este assunto. No entanto, é possível inferir que o WiFi LoRa 32 (V2) tem pelo menos três pinos de interrupção externa (veja a tabela "Pin Definition" do documento original), enquanto o WiFi LoRa 32 (V3) pode ter um número menor, pois o número total de pinos digitais passou para 26 (do original de 30).
+
+Pergunta atual: Quantos e quais são os pinos de interrupção externa tem o esp32.
+
+Resposta gerada:
+ O ESP32 possui um total de 54 pinos, dentre eles existem alguns que podem ser usados como pinos de interrupção externa. No entanto, para obter uma lista detalhada dos mesmos é necessário consultar outros documentos ou fontes. No documento que forneceu não foi especificado detalhadamente quantos e quais são os pinos de interrupção externa em um ESP32.
 ========================================

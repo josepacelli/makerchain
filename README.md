@@ -52,6 +52,14 @@ Você pergunta em português e recebe respostas contextuais rápidas — tudo vi
 
 ---
 
+### 🧩 Escolha do Splitter no `ingest.py`
+
+O script `ingest.py` agora permite selecionar dinamicamente o splitter para divisão dos chunks:
+
+- **`recursive`** – padrão, com `RecursiveCharacterTextSplitter`, focado em velocidade e simplicidade.
+- **`semantic`** – utiliza `.sentence_splitter.SemanticChunker` (ou similar) para gerar chunks contextuais mais coesos, com base em embeddings.
+
+
 ## ⚙️ Componentes do Projeto
 
 | Componente               | Função                                                                                  |
