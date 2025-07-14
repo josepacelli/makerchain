@@ -37,12 +37,16 @@
 
         {% if result %}
             <div class="card mb-4">
-                <div class="card-header">Resposta</div>
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <span>Resposta</span>
+                    <button id="btnDownload" class="btn btn-sm btn-success">⬇️ Baixar Resposta</button>
+                </div>
                 <div class="card-body">
-                    <p>{{ result }}</p>
+                    <pre style="white-space: pre-wrap; word-wrap: break-word;">{{ result }}</pre>
                 </div>
             </div>
         {% endif %}
+
         {% if history %}
             <h5>Histórico de Perguntas</h5>
 
@@ -65,11 +69,27 @@
         const form = document.querySelector('form');
         const btnSubmit = document.getElementById('btnSubmit');
         const spinner = document.getElementById('loadingSpinner');
+        const btnDownload = document.getElementById('btnDownload');
 
         form.addEventListener('submit', () => {
             btnSubmit.disabled = true;
             spinner.classList.remove('d-none');
         });
+
+        if (btnDownload) {
+            btnDownload.addEventListener('click', () => {
+                const text = `{{ result | replace('\n', '\\n') | replace("'", "\\'") }}`;
+                const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'resposta_makerchain.txt';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            });
+        }
     </script>
 </body>
 </html>

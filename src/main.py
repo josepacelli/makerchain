@@ -1,40 +1,57 @@
-
 from fastapi import FastAPI, Request, Form
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
-from fastapi.responses import RedirectResponse
 from starlette.middleware.sessions import SessionMiddleware
-from src.qa_engine import load_qa_chain
+from src.qa_enginer import QAEngine, QAHandler
 
-app = FastAPI()
+# Inicializa o app FastAPI
+app = FastAPI(title="MakerChain Web")
+
+# Middleware para sessão (para manter histórico entre requisições)
 app.add_middleware(SessionMiddleware, secret_key="sua_chave_secreta_aqui")
 
+# Templates Jinja2
 templates = Jinja2Templates(directory="src/templates")
-qa = load_qa_chain()
+
+# Inicializa motor MCP com histórico/contexto
+qa_engine = QAEngine()
+qa_handler = QAHandler(qa_engine.qa)
 
 @app.get("/", response_class=HTMLResponse)
 async def form_get(request: Request):
+    """Renderiza a interface principal com histórico."""
     history = request.session.get("history", [])
-    return templates.TemplateResponse("index.html", {"request": request, "result": "", "history": history})
+    return templates.TemplateResponse("index.html", {
+        "request": request,
+        "result": "",
+        "history": history
+    })
 
 @app.post("/", response_class=HTMLResponse)
 async def form_post(request: Request, pergunta: str = Form(...)):
+    """Recebe a pergunta, gera resposta via MCP, salva no histórico."""
     try:
-        resposta = qa.run(pergunta)
+        resposta = qa_handler.ask(pergunta)
     except Exception as e:
         print(f"Erro ao gerar resposta: {e}")
         resposta = "Erro interno. Tente novamente."
-    resposta = qa.run(pergunta)
+
+    # Atualiza histórico na sessão
     history = request.session.get("history", [])
     history.append({"pergunta": pergunta, "resposta": resposta})
     if len(history) > 10:
         history.pop(0)
     request.session["history"] = history
-    return templates.TemplateResponse("index.html", {"request": request, "result": resposta, "pergunta": pergunta, "history": history})
 
-history = []
+    return templates.TemplateResponse("index.html", {
+        "request": request,
+        "result": resposta,
+        "pergunta": pergunta,
+        "history": history
+    })
 
 @app.post("/clear", response_class=RedirectResponse)
 async def clear_history(request: Request):
+    """Limpa o histórico da sessão."""
     request.session["history"] = []
     return RedirectResponse("/", status_code=303)

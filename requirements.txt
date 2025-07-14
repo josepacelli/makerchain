@@ -8,6 +8,7 @@ itsdangerous
 langchain==0.2.0
 langchain-community==0.0.21
 langchain-ollama==0.0.6
+langchain-experimental
 
 # Vetorização
 faiss-cpu
