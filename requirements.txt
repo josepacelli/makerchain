@@ -1,21 +1,28 @@
-fastapi
-uvicorn
-jinja2
-python-multipart
-itsdangerous
+fastapi==0.115.12
+uvicorn==0.34.2
+jinja2==3.1.6
+python-multipart==0.0.20
+itsdangerous==2.2.0
 
 # LangChain + comunidade
-langchain==0.2.0
-langchain-community==0.0.21
-langchain-ollama==0.0.6
-langchain-experimental
+langchain==0.3.24
+langchain-aws==0.2.22
+langchain-community==0.3.23
+langchain-core==0.3.68
+langchain-experimental==0.3.4
+langchain-google-vertexai==2.0.21
+langchain-ollama==0.3.4
+langchain-openai==0.3.14
+langchain-text-splitters==0.3.8
+langchain-unstructured==0.1.6
 
 # Vetorização
-faiss-cpu
+faiss-cpu==1.11.0
 
 # Caso use PDFs ou textos diversos
-unstructured
-pypdf
+unstructured==0.17.2
+unstructured-client==0.35.0
+pypdf==5.4.0
 
 # Para variáveis de ambiente (se usado)
-python-dotenv
+python-dotenv==1.1.0
